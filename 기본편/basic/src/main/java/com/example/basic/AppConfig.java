@@ -1,6 +1,8 @@
 package com.example.basic;
 
+import com.example.basic.discount.DiscountPolicy;
 import com.example.basic.discount.FixDiscountPolicy;
+import com.example.basic.member.MemberRepository;
 import com.example.basic.member.MemberService;
 import com.example.basic.member.MemberServiceImpl;
 import com.example.basic.member.MemoryMemberRepository;
@@ -11,10 +13,18 @@ public class AppConfig {
 
     // DI (dependency Injection) : 의존 관계 주입
     public MemberService memberService(){
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    private static MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
 
     public OrderService orderService(){
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+
+    private static DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 }
