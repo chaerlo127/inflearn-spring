@@ -23,7 +23,7 @@ public class ApplicationContextInfoTest {
     //Role ROLE_INFRASTRUCTURE: 스프링이 내부에서 사용하는 빈
     @Test
     @DisplayName("애플리케이션 빈 출력하기")
-    void findApplicatonBean(){
+    void findApplicationBean(){
         String[] beanDefinitionNames = ac.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
             BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
