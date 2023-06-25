@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
+    // 이러면 객체가 2개 생성 되는 것인가 ? => 싱글톤이 깨지게 되는 것인가?
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
 
     // @Bean: 자동으로 스프링 컨테이너에 등록이 됨.
     @Bean
@@ -20,7 +23,7 @@ public class AppConfig {
         return new MemberServiceImpl(memberRepository());
     }
     @Bean
-    private static MemberRepository memberRepository() {
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
     @Bean
@@ -28,7 +31,7 @@ public class AppConfig {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     @Bean
-    private static DiscountPolicy discountPolicy() {
+    public DiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
     }
 }
