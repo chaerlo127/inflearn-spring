@@ -1,4 +1,4 @@
-package com.example.basic.Scan;
+package com.example.basic.scan;
 
 import com.example.basic.AutoAppConfig;
 import com.example.basic.member.MemberService;
