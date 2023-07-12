@@ -1,9 +1,6 @@
 package com.example.basic.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient{
 
     private String url;
 
@@ -30,15 +27,14 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     }
 
     // 의존성 주입 이후에 이 메소드를 실행해라.
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    public void init() {
         System.out.println("NetworkClient.afterPropertiesSet");
         connect();
         call("초기화 연결 메세지");
     }
 
-    @Override
-    public void destroy() throws Exception {
+    // 빈 소멸 전에 이 메소드를 실행해라
+    public void close()  {
         System.out.println("NetworkClient.destroy");
         disconnect();
     }
