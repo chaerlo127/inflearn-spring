@@ -1,5 +1,8 @@
 package com.example.basic.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient{
 
     private String url;
@@ -27,6 +30,7 @@ public class NetworkClient{
     }
 
     // 의존성 주입 이후에 이 메소드를 실행해라.
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.afterPropertiesSet");
         connect();
@@ -34,6 +38,7 @@ public class NetworkClient{
     }
 
     // 빈 소멸 전에 이 메소드를 실행해라
+    @PreDestroy
     public void close()  {
         System.out.println("NetworkClient.destroy");
         disconnect();
