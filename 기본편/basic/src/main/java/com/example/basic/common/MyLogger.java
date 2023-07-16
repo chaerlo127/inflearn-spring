@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-@Scope(value = "request")
+@Scope(value = "request") // request 요청이 들어왔을 때 빈을 생성하는데, 프로젝트를 시작햇을 때 빈을 생성하다보니 에러가 뜨는 것임
 public class MyLogger {
     private String uuid;
     private String requestUrl;
